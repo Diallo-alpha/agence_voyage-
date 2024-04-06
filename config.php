@@ -1,6 +1,6 @@
 <?php
 
-    require_once "Admin.php";
+    require_once "Billet.php";
     $servername = "localhost";
     $db = "agence_voyage";
     $username = "root";
@@ -8,7 +8,8 @@
 
     try{
         $connexion = new PDO("mysql:host=$servername;dbname=$db",$username,$password);
-        $admin= new Admin($connexion,"thiamhapstou@gmail.com","BinetaSy30@");
+        $billet= new Billet($connexion,"trajet", 1000000, "statut", 1);
+        $resultat= $billet->readBillet();
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     catch(PDOException $e){
