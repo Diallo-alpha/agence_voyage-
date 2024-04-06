@@ -46,6 +46,7 @@ $billets = $billet->readBillet();
                 <th>Prix</th>
                 <th>Statut</th>
                 <th>Email de l'Administrateur</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -55,6 +56,7 @@ $billets = $billet->readBillet();
                 <td><?php echo $billet['prix']; ?></td>
                 <td><?php echo $billet['statut']; ?></td>
                 <td><?php echo $billet['email']; ?></td>
+                <td><a href="?supprimer=<?php echo $billet->getId(); ?>">Supprimer</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

@@ -5,14 +5,16 @@ class Billet {
     private $prix;
     private $statut;
     private $admin;
+    private $id;
 
     // Constructeur
-    public function __construct($connexion, $trajet, $prix, $statut, $admin) {
+    public function __construct($connexion, $trajet, $prix, $statut, $admin, $id) {
         $this->connexion=$connexion;
         $this->trajet = $trajet;
         $this->prix = $prix;
         $this->statut = $statut;
         $this->admin = $admin;
+        $this->admin = $id;
     }
 
     // Getters
@@ -82,8 +84,33 @@ class Billet {
         }
     }
     
-
-
+    public function updateBillet($id_billet, $trajet, $prix, $statut)
+    {
+        try {
+            // Requête SQL pour mettre à jour un billet existant
+            $sql = "UPDATE billet SET trajet = :trajet, prix = :prix, statut = :statut WHERE id_billet = :id_billet";
+    
+            // Préparation de la requête
+            $stmt = $this->connexion->prepare($sql);
+    
+            // Liaison des valeurs aux paramètres de la requête
+            $stmt->bindParam(':trajet', $trajet);
+            $stmt->bindParam(':prix', $prix);
+            $stmt->bindParam(':statut', $statut);
+            $stmt->bindParam(':id_billet', $id_billet);
+    
+            // Exécution de la requête
+            $stmt->execute();
+    
+            // Redirection vers la page d'accueil après la mise à jour du billet
+            header("Location: ReadBillet.php");
+            exit();
+        } catch (PDOException $e) {
+            // En cas d'erreur, affichage de l'erreur et gestion appropriée
+            echo "Erreur lors de la mise à jour du billet : " . $e->getMessage();
+        }
+    }
+    
 
 
 
