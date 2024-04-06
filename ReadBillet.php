@@ -3,7 +3,7 @@
 require_once "config.php";
 
 // Instancier votre objet Billet
-$billet = new Billet($connexion, "trajet", 100000, "statut", 1);
+$billet = new Billet($connexion, 1, "trajet", 100000, "statut", 1);
 
 // Appeler la méthode readBillet pour récupérer les billets
 $billets = $billet->readBillet();
@@ -66,7 +66,8 @@ $billets = $billet->readBillet();
                 <td><?php echo $billet['statut']; ?></td>
                 <td><?php echo $billet['email']; ?></td>
                 <td><a href="update.php?matricule=" class="btn" ><i class="fas fa-edit fa-2x" style="color: #3011BC;"></i></a></td>
-                <td><a href="DeleteBillet.php?id=" class="btn"><i class="fas fa-trash-alt fa-2x" style="color: red;"></i></a> </td>
+                <td><a href="DeleteBillet.php?id=" class="btn"><i class="fas fa-trash-alt fa-2x" style="color: red;"></i></a></td>
+
             </tr>
             <?php endforeach; ?>
         </tbody>

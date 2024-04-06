@@ -24,7 +24,7 @@ try {
         $id_admin = $stmt->fetchColumn();
         
         // Appel de la méthode addBillet de votre objet Billet pour ajouter le billet
-        $billet= new Billet($connexion,"trajet", 100000, "statut", 1);
+        $billet= new Billet($connexion,1, "trajet", 100000, "statut", 1);
         $billet->addBillet($trajet, $prix, $statut, $id_admin);
     }
 } catch (PDOException $e) {
@@ -61,7 +61,7 @@ try {
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">ACCUEIL</a>
+                    <a class="nav-link" aria-current="page" href="index.php">AJOUTER UN BILLET</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="ReadBillet.php">LISTE DES BILLETS</a>

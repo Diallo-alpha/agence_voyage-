@@ -1,13 +1,15 @@
 <?php
 class Billet {
     private $connexion;
+    private $id;
     private $trajet;
     private $prix;
     private $statut;
     private $admin;
 
     // Constructeur
-    public function __construct($connexion, $trajet, $prix, $statut, $admin) {
+    public function __construct($connexion,$id ,$trajet, $prix, $statut, $admin) {
+        $this->id=$id;
         $this->connexion=$connexion;
         $this->trajet = $trajet;
         $this->prix = $prix;
@@ -16,6 +18,10 @@ class Billet {
     }
 
     // Getters
+    public function getId(){
+        return $this->id;
+    }
+    
     public function getTrajet() {
         return $this->trajet;
     }
@@ -30,6 +36,25 @@ class Billet {
 
     public function getIdAdmin() {
         return $this->admin;
+    }
+     // Setter pour le trajet
+     public function setTrajet($trajet) {
+        $this->trajet = $trajet;
+    }
+
+    // Setter pour le prix
+    public function setPrix($prix) {
+        $this->prix = $prix;
+    }
+
+    // Setter pour le statut
+    public function setStatut($statut) {
+        $this->statut = $statut;
+    }
+
+    // Setter pour l'admin
+    public function setAdmin($admin) {
+        $this->admin = $admin;
     }
     // Méthode pour ajouter des billets
     public function addBillet($trajet, $prix, $statut, $id_admin)
