@@ -36,7 +36,7 @@ class Billet {
     {
         try {
             // Requête SQL pour insérer un nouveau billet
-            $sql = "INSERT INTO billet (`trajet`, `prix`, `statut`, `id_admin`) VALUES (:trajet, :prix, :statut, :id_admin)";
+            $sql = "INSERT INTO billet (trajet, prix, statut, id_admin) VALUES (:trajet, :prix, :statut, :id_admin)";
 
             // Préparation de la requête
             $stmt = $this->connexion->prepare($sql);
@@ -51,13 +51,38 @@ class Billet {
             $stmt->execute();
             
             // Redirection vers la page d'accueil après l'ajout du billet
-            header("Location: AddBillet.php");
+            header("Location: ReadBillet.php");
             exit();
         } catch (PDOException $e) {
             // En cas d'erreur, affichage de l'erreur et gestion appropriée
             echo "Erreur lors de l'ajout du billet : " . $e->getMessage();
         }
     }
+
+    public function readBillet()
+    {
+        try {
+            // Requête SQL pour sélectionner tous les billets avec les détails de l'administrateur
+            $sql = "SELECT b.trajet, b.prix, b.statut, a.email 
+                    FROM billet b 
+                    INNER JOIN admin a ON b.id_admin = a.id";
+            $stmt = $this->connexion->prepare($sql);
+
+            $stmt->execute();
+    
+            // Récupérer tous les résultats sous forme de tableau associatif
+            $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            // Retourner les résultats
+            return $resultat;
+        } catch (PDOException $e) {
+            // Gérer les erreurs
+            echo "Erreur lors de la récupération des billets : " . $e->getMessage();
+            
+        }
+    }
+    
+
 
 
 
