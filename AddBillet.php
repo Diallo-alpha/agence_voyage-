@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Appel de la méthode addBillet de votre objet Admin pour ajouter le billet
         
-        $admin->addBillet($trajet, $prix, $statut, $id_admin);
+        $billet->addBillet($trajet, $prix, $statut, $id_admin);
     } catch (PDOException $e) {
         // Gestion des erreurs
         echo "Erreur lors de l'ajout du billet : " . $e->getMessage();
