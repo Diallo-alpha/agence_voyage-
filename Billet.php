@@ -82,6 +82,27 @@ class Billet {
         }
     }
     
+    public function deleteBillet($id)
+    {
+        try {
+            // Préparer la requête SQL pour supprimer le billet avec l'ID donné
+            $sql = "DELETE FROM billet WHERE id = :id";
+            $stmt = $this->connexion->prepare($sql);
+            
+            // Liaison du paramètre :id avec la valeur fournie
+            $stmt->bindParam(':id', $id);
+            
+            // Exécution de la requête SQL préparée
+            $stmt->execute();
+            
+            // Affichage d'un message de confirmation
+            echo "Le billet avec l'ID $id a été supprimé.";
+        } catch (PDOException $e) {
+            // Gestion des erreurs
+            echo "Erreur lors de la suppression du billet : " . $e->getMessage();
+        }
+    }
+
 
 
 
