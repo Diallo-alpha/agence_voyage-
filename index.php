@@ -61,7 +61,7 @@ try {
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">AJOUTER UN BILLET</a>
+                    <a class="nav-link" aria-current="page" href="index.php">AJOUTER UNBILLET</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="ReadBillet.php">LISTE DES BILLETS</a>

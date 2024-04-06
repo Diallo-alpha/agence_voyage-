@@ -33,7 +33,7 @@ $billets = $billet->readBillet();
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">ACCUEIL</a>
+                    <a class="nav-link" aria-current="page" href="index.php">AJOUTER UN BILLET</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="ReadBillet.php">LISTE DES BILLETS</a>
