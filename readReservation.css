@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.navbar {
+   
+    background-color: #3011BC; 
+    font-family: iceberg;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    background-color: #ffff;
+    width: 90px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1); 
+}
+.collapse{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-nav{
+    gap: 20px;
+}
+.nav-item {
+    font-weight: bold;
+    font-size: 28px;
+    
+}
+
+.navbar-nav .nav-link:hover {
+    color:  #FE7A15; 
+}
+
+.navbar-nav .nav-link {
+    color: #ffff; 
+}
+.container h2{
+    color: #FE7A15;
+    font-size: 40px;
+    font-family: iceberg;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2%;
+}
+.card {
+    margin-top: 5%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-height: 250px;
+    object-fit: cover;
+}
+.card-body{
+    background-color: #3011BC;
+}
+
+.card-title {
+    
+    font-size: 28px;
+    font-family: iceberg;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #FFFF;
+}
+.card-title img{
+    background-color: #ffff;
+    width: 90px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.card-text {
+    color: #fff;
+}
+.client,.trajet_tel,.datetime,.price,.update_delete{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.nom, .trajet,.date,.prix,.update{
+    float: left;
+}
+.coordonnees, .tel,.time,.validite,.delete{
+    float: right;
+    
+}
+.update,.delete{
+    background-color: #ffff;
+    border-radius: 5px;
+}
+
+

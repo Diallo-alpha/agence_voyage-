@@ -1,14 +1,16 @@
 <?php
 class Billet {
     private $connexion;
+    private $id;
     private $trajet;
     private $prix;
     private $statut;
     private $admin;
-    private $id;
 
     // Constructeur
+
     public function __construct($connexion, $trajet, $prix, $statut, $admin, $id) {
+        $this->id=$id;
         $this->connexion=$connexion;
         $this->trajet = $trajet;
         $this->prix = $prix;
@@ -18,6 +20,10 @@ class Billet {
     }
 
     // Getters
+    public function getId(){
+        return $this->id;
+    }
+    
     public function getTrajet() {
         return $this->trajet;
     }
@@ -32,6 +38,25 @@ class Billet {
 
     public function getIdAdmin() {
         return $this->admin;
+    }
+     // Setter pour le trajet
+     public function setTrajet($trajet) {
+        $this->trajet = $trajet;
+    }
+
+    // Setter pour le prix
+    public function setPrix($prix) {
+        $this->prix = $prix;
+    }
+
+    // Setter pour le statut
+    public function setStatut($statut) {
+        $this->statut = $statut;
+    }
+
+    // Setter pour l'admin
+    public function setAdmin($admin) {
+        $this->admin = $admin;
     }
     // Méthode pour ajouter des billets
     public function addBillet($trajet, $prix, $statut, $id_admin)
@@ -111,6 +136,27 @@ class Billet {
         }
     }
     
+    public function deleteBillet($id)
+    {
+        try {
+            // Préparer la requête SQL pour supprimer le billet avec l'ID donné
+            $sql = "DELETE FROM billet WHERE id = :id";
+            $stmt = $this->connexion->prepare($sql);
+            
+            // Liaison du paramètre :id avec la valeur fournie
+            $stmt->bindParam(':id', $id);
+            
+            // Exécution de la requête SQL préparée
+            $stmt->execute();
+            
+            // Affichage d'un message de confirmation
+            echo "Le billet avec l'ID $id a été supprimé.";
+        } catch (PDOException $e) {
+            // Gestion des erreurs
+            echo "Erreur lors de la suppression du billet : " . $e->getMessage();
+        }
+    }
+
 
 
 

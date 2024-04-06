@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+.navbar {
+   
+    background-color: #3011BC; 
+    font-family: iceberg;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    background-color: #ffff;
+    width: 90px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1); 
+}
+.collapse{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-nav{
+    gap: 20px;
+}
+.nav-item {
+    font-weight: bold;
+    font-size: 28px;
+    
+}
+
+.navbar-nav .nav-link:hover {
+    color:  #FE7A15; 
+}
+
+.navbar-nav .nav-link {
+    color: #ffff; 
+}
+.titre{
+    margin-top: 30px;
+}
+.titre
+h1{
+
+    color: #FE7A15;
+    font-size: 60px;
+    font-family: iceberg;
+    font-weight: bold; 
+    text-align: center;
+    margin-bottom: 5%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th{
+    background: #FE7A15;
+    color: #ffff;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+
+tr:hover {
+    background-color: #e2e2e2;
+}
