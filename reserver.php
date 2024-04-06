@@ -25,7 +25,7 @@
                     <a class="nav-link" href="Reserver.php">RÉSERVEZ UN BILLET</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="read_billet.php">LISTE DES BILLETS</a>
+                    <a class="nav-link" href="ReadReservation.php">LISTE DES BILLETS</a>
                     </li>
                 </ul>
                 </div>

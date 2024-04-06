@@ -51,13 +51,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">ACCUEIL</a>
+                    <a class="nav-link" aria-current="page" href="User.php">ACCUEIL</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="reserver.php">RÉSERVEZ UN BILLET</a>
+                    <a class="nav-link" href="reserver.php">FAIRE UNE RESERVATION</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="read_billet.php">LISTE DES BILLETS</a>
+                    <a class="nav-link" href="ReadReservation.php">LISTE DES BILLETS</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="read_billet.php">CONNEXION</a>
@@ -87,7 +87,7 @@
             $client_connecte = false; // Par défaut, le client n'est pas connecté
 
             // Récupération des billets disponibles depuis la base de données
-            $query = "SELECT * FROM billet WHERE statut > 0";
+            $query = "SELECT * FROM billet WHERE statut = 'disponible'";
             $statement = $connexion->query($query);
             $billets = $statement->fetchAll(PDO::FETCH_ASSOC);
 

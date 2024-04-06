@@ -80,17 +80,40 @@ class Reservation
             // Exécution de la requête
             $statement->execute();
             
-            // Vérification si la réservation a été ajoutée avec succès
-            if ($statement->rowCount() > 0) {
-                echo "La réservation a été créée avec succès.";
-            } else {
-                echo "Impossible de créer la réservation.";
-            }
+            header("location: ReadReservation.php");
         } catch (PDOException $e) {
             // Gestion des exceptions PDO
             echo "Erreur PDO : " . $e->getMessage();
         }
     }
+    
+
+    //methode qui permet d'afficher les reservation 
+
+    // Modification de la méthode readReservations dans la classe Reservation
+public function readReservations() {
+    try {
+        // Requête SQL pour récupérer les réservations avec les informations sur le client, le billet et l'état de la réservation
+        $query = "SELECT reservation.*, client.*, billet.*
+                  FROM reservation 
+                  LEFT JOIN client ON reservation.id_client = client.id 
+                  LEFT JOIN billet ON reservation.id_billet = billet.id";
+        
+        // Préparation de la requête
+        $statement = $this->connexion->query($query);
+        
+        // Récupération des résultats sous forme de tableau associatif
+        $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Retourner les réservations
+        return $reservations;
+    } catch (PDOException $e) {
+        // Gestion des exceptions PDO
+        echo "Erreur PDO : " . $e->getMessage();
+        return null;
+    }
+}
+
     
 
     //methode pour mettre à ajour etat d'un réservation 
