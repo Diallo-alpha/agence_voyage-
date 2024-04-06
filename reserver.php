@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">ACCUEIL</a>
+                    <a class="nav-link" aria-current="page" href="User.php">ACCUEIL</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="Reserver.php">RÉSERVEZ UN BILLET</a>
@@ -62,16 +62,25 @@
 
         // Affichage du formulaire de réservation
         echo "<h2>Informations personnelles</h2>";
-        echo "<form method='post' action=''>";
+        echo "<form method='post' action='AddReservation.php'>";
         echo "<input type='hidden' name='id' value='" . $id_billet . "'>"; // Correction ici
-        echo "<label for='nom'>Nom :</label><br>";
-        echo "<input type='text' id='nom' name='nom'><br>";
-        echo "<label for='prenom'>Prenom :</label><br>";
-        echo "<input type='text' id='prenom' name='prenom'><br>";
-        echo "<label for='email'>Email :</label><br>";
-        echo "<input type='text' id='email' name='email'><br>";
-        echo "<label for='telephone'>Téléphone:</label><br>";
-        echo "<input type='text' id='telephone' name='telephone'><br>";
+        // echo "<label for='nom'>Nom :</label><br>";
+        // echo "<input type='text' id='nom' name='nom'><br>";
+        // echo "<label for='prenom'>Prenom :</label><br>";
+        // echo "<input type='text' id='prenom' name='prenom'><br>";
+        // echo "<label for='email'>Email :</label><br>";
+        // echo "<input type='text' id='email' name='email'><br>";
+        // echo "<label for='telephone'>Téléphone:</label><br>";
+        // echo "<input type='text' id='telephone' name='telephone'><br>";
+        echo "<label for='date_reservation'>Date de réservation :</label><br>";
+        echo "<input type='datetime-local' id='date_reservation' name='date_reservation'><br>"; // Champ pour la date de réservation
+        echo "<label for='etat'>État :</label><br>";
+        echo "<select id='etat' name='etat'>";
+        echo "<option value='confirmé'>Confirmé</option>";
+        echo "<option value='en attente'>En attente</option>";
+        echo "<option value='annulé'>Annulé</option>";
+        echo "</select><br>";
+
         // Ajouter d'autres champs pour les informations personnelles (prénom, email, téléphone, etc.)
         echo "<input type='submit' value='Réserver'>";
         echo "</form>";
