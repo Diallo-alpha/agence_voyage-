@@ -48,6 +48,7 @@ $billets = $billet->readBillet();
                 <th>Prix</th>
                 <th>Statut</th>
                 <th>Email de l'agent</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@ $billets = $billet->readBillet();
                 <td><?php echo $billet['prix']; ?></td>
                 <td><?php echo $billet['statut']; ?></td>
                 <td><?php echo $billet['email']; ?></td>
+                <!-- <td><a href="DeleteBillet.php?id=<?php echo $billet['id']; ?>"><i class="fas fa-trash-alt"></i></a> </td> -->
             </tr>
             <?php endforeach; ?>
         </tbody>
