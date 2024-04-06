@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.navbar {
+   
+    background-color: #3011BC; 
+    font-family: iceberg;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    background-color: #ffff;
+    width: 90px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1); 
+}
+.collapse{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-nav{
+    gap: 20px;
+}
+.nav-item {
+    font-weight: bold;
+    font-size: 28px;
+    
+}
+
+.navbar-nav .nav-link:hover {
+    color:  #FE7A15; 
+}
+
+.navbar-nav .nav-link {
+    color: #ffff; 
+}
+.banner{
+    height: 600px;
+    position: relative; 
+    background:linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.582) ), url("./images/concept-voyage-points-repere_23-2149153256.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0; 
+    text-align: center;
+    color: #fff;
+}
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.banner-text h2{
+    color: #FE7A15;
+    font-size: 60px;
+    font-family: iceberg;
+    font-weight: bold; 
+}
+.banner-text p {
+    font-size: 24px;
+    font-family: roboto;
+    font-weight: bold;
+}
+form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="date"],
+button[type="submit"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 300px;
+}
+
+button {
+    background-color: #3011BC;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FE7A15;
+    color: #fff;
+}
+/* Cartes de destination */
+.destinations {
+    padding: 20px;
+    margin-top: 5%;
+}
+
+.destinations h2{
+    color: #FE7A15;
+    font-size: 60px;
+    font-family: iceberg;
+    font-weight: bold; 
+    text-align: center;
+    margin-bottom: 5%;
+}
+/* Carte */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image de la carte */
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Corps de la carte */
+.card-body {
+    padding: 20px;
+}
+
+/* Titre de la carte */
+.card-title {
+  
+    text-align: center;
+    color: #3011BC;
+    font-size: 28px;
+    font-family: roboto;
+    font-weight: bold;
+
+}
+
+/* Bouton de la carte */
+/* Style du bouton */
+.bouton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3011BC;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.bouton:hover {
+    background-color: #FE7A15;
+    color: #fff;
+}
+footer {
+    background-color: #3011BC;
+    color: #ffff;
+    padding: 40px 0;
+}
+footer img{
+    background-color: #ffff;
+    width: 110px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+footer h3 {
+    color: #FE7A15;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-family: roboto;
+    font-weight: bold;
+
+}
+
+footer p {
+    color: #ffff;
+    font-size: 16px;
+    font-family: roboto;
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: #ffff;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    color: #FE7A15;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.col-md-4 {
+    flex-basis: calc(33.333% - 20px);
+}
+.copyright{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: iceberg;
+}
+
+
