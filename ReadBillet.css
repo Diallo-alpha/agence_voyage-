@@ -62,14 +62,27 @@ table {
 th{
     background: #FE7A15;
     color: #ffff;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: iceberg;
 }
 th, td {
     padding: 10px;
     border: 1px solid #dddddd;
     text-align: left;
 }
+td{
+    color: #000;
+    font-size: 18px;
+    font-family: Roboto;
+}
 
 
 tr:hover {
     background-color: #e2e2e2;
+}
+.bouton{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }

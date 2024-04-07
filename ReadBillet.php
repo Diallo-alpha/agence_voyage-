@@ -28,7 +28,7 @@ if ($id !== null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des billets</title>
-    <link rel="stylesheet" href="read.css">
+    <link rel="stylesheet" href="ReadBillet.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Inclure la feuille de style Bootstrap -->
@@ -64,7 +64,7 @@ if ($id !== null) {
                     <th>Trajet</th>
                     <th>Prix</th>
                     <th>Statut</th>
-                    <!-- <th>Email de l'Administrateur</th> -->
+                     <th>Email de l'Agent</th> 
                     <th>Action</th>
                 </tr>
             </thead>
@@ -75,8 +75,12 @@ if ($id !== null) {
         <td><?php echo $billet['prix']; ?></td>
         <td><?php echo $billet['statut']; ?></td>
         <td><?php echo $billet['email']; ?></td>
-        <td><a href="updateBillet.php?id=<?php echo $billet['id']; ?>">Modifier</a></td>
-        <td><a href="DeleteBillet.php?id=<?php echo $billet['id']; ?>">Supprimer</a></td>
+        <td>
+            <div class="bouton">
+            <a href="updateBillet.php?id=<?php echo $billet['id']; ?>"><i class="fas fa-edit fa-2x" style="color:  #3011BC; "></i></a>
+            <a href="DeleteBillet.php?id=<?php echo $billet['id']; ?>"><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
+            </div>
+        </td>
 
     </tr>
 <?php endforeach; ?>
