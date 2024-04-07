@@ -56,7 +56,7 @@
                                 <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a> -->
 
                             <a href="updateReservation.php?id=<?php echo $reservation['id']; ?>" class="btn"><i class="fas fa-edit fa-2x" style="color: #3011BC;"></i></a>
-                             <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
+                             <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn " onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');"><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
                             </div>
                         </div>
                     </div>
