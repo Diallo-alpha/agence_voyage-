@@ -166,19 +166,7 @@ public function getListeBillests()
             echo "Erreur lors de la récupération du billet : " . $e->getMessage();
         }
     }
-  //rservation d'un billet 
-    public function getReserveBille()
-        {
-           $sql = $this->connexion->prepare("SELECT reservation.id, billet.trajet, billet.prix, client.nom, client.prenom, client.email, client.telephone, reservation.date
-                                              FROM reservation
-                                              JOIN billet ON reservation.id_billet = billet.id
-                                              JOIN client ON reservation.id_client = client.id"
-                                              );       
-             $sql->execute();
-            // Récupération des résultats
-            $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-            return $results;
-        }
-     
+    
+    
 }
 ?>
