@@ -43,6 +43,18 @@
     color: #FE7A15;
     font-weight: bold;
 }
+button{
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 300px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #3011BC;
+}
 
 
 </style>

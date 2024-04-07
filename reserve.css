@@ -40,22 +40,35 @@
 .navbar-nav .nav-link {
     color: #ffff; 
 }
-.formulaire{
+.formulaire {
     margin-bottom: 5%;
+   
 }
-.formulaire h1{
+
+.container h1 {
     color: #FE7A15;
     font-size: 60px;
     font-family: iceberg;
-    font-weight: bold; 
+    font-weight: bold;
     text-align: center;
     margin-top: 5%;
     margin-bottom: 5%;
+    text-align: center;
 }
+
 .container {
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .col-md-6 {
@@ -64,8 +77,20 @@
     justify-content: center;
 }
 
+.img-container {
+    flex: 1;
+    margin-right: 20px; /* Ajoutez un espace entre l'image et le formulaire */
+}
+
+.form-container {
+    flex: 1;
+}
+
 .form-group {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .form-control {
@@ -77,10 +102,11 @@ img {
     height: auto;
     border-radius: 20px;
 }
+
 input[type="text"],
 input[type="date"],
 input[type="time"],
-input[type="submit"] {
+input[type="submit"],select {
     margin-bottom: 10px;
     padding: 8px;
     border: 1px solid #ccc;
@@ -92,8 +118,8 @@ input[type="submit"] {
     border-right: none;
     border-bottom: 1px solid #3011BC;
 }
- 
-label{
+
+label {
     color: #FE7A15;
     font-size: 18px;
     font-family: roboto;
@@ -104,9 +130,10 @@ input[type="submit"] {
     color: #fff;
     cursor: pointer;
     margin-top: 28px;
+    margin-left: 25%;
 }
 
 input[type="submit"]:hover {
     background-color: #FE7A15;
     color: #fff;
-}
+} 
