@@ -44,7 +44,7 @@
             $reservations = $Reservation->readReservations();
             
                 // Affichage des réservations
-                foreach ($reservations as $reservation) {
+                foreach ($reservations as $reservation){
                     ?>
                     <div class="col"> 
                         <div class="card">
@@ -52,11 +52,11 @@
                                 <h5 class="card-title" style="">Réservation #<?php echo $reservation['id']; ?></h5>
                                 <p class="card-text"> <span>Billet:</span> <?php echo $reservation['trajet']; ?> - Prix : <?php echo $reservation['prix']; ?></p>
                                 <p class="card-text"> <span>Client:</span> <?php echo $reservation['nom'] . " " . $reservation['prenom']; ?></p>
-                                <p class="card-text"> <span>État de la réservation:</span> <?php echo $reservation['etat']; ?></p>
+                                <!-- <p class="card-text"> <span>État de la réservation:</span> <?php echo $reservation['etat']; ?></p> -->
                             </div>
                             <div>
                                 <a href="modifier_reservation.php?id=<?php echo $reservation['id']; ?>" class="btn "><i class="fas fa-edit fa-2x" style="color:  #3011BC; "></i></a>
-                                <!-- <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></a> -->
+                                <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
                             </div>
                         </div>
                     </div>

@@ -212,25 +212,20 @@ class Reservation
      }
  }
 
- 
-
-    // require_once "Reservation.php"; // Assurez-vous d'avoir le fichier contenant la classe Reservation
-
-    //         // Requête SQL pour récupérer les détails des réservations avec les informations du billet et du client
-    //         $query = "SELECT reservation.*, billet.trajet, billet.prix, client.nom, client.prenom
-    //                   FROM reservation
-    //                   INNER JOIN billet ON reservation.id_billet = billet.id
-    //                   INNER JOIN client ON reservation.id_client = client.id";
-
-    //         try {
-    //             // Préparation de la requête
-    //             $statement = $connexion->prepare($query);
-                
-    //             // Exécution de la requête
-    //             $statement->execute();
-                
-    //             // Récupération des résultats
-    //             $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+ public function deleteReservation($id) {
+    try {
+        // Préparer la requête SQL pour supprimer la réservation avec l'ID spécifié
+        $stmt = $this->connexion->prepare("DELETE FROM reservation WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        
+        // Exécuter la requête
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // En cas d'erreur PDO, afficher le message d'erreur
+        echo "Erreur PDO : " . $e->getMessage();
+        return false; // Indiquer que la suppression a échoué
+    }
+}
     
 }
 
