@@ -42,7 +42,7 @@ h2{
     text-align: center;
 }
 input[type="email"],
-input[type="password"],input[type="text"] {
+input[type="password"],input[type="text"],input[type="tel"]{
     padding: 12px 20px;
     font-size: 18px;
     font-weight: bold;

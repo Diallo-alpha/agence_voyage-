@@ -15,7 +15,7 @@
             <h2 class="mt-5">Inscription</h2>
             <p class="message">Partez à L'aventure avec Nous</p>
         </div>
-        <form action="inscription.php" method="POST">
+        <form action="addClient.php" method="POST">
             <div class="form-group">
                 <input type="text" class="form-control" id="name" name="prenom" placeholder="Prenom" required>
             </div>
@@ -26,7 +26,7 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="telephone" name="telephone" placeholder="Telephone" required>
+                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Telephone" required>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
