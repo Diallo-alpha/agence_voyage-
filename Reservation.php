@@ -87,7 +87,7 @@ class Reservation
         }
     }
     
-    
+
     //methode qui permet d'afficher les reservation 
 
     // Modification de la méthode readReservations dans la classe Reservation
@@ -214,8 +214,30 @@ public function readReservations() {
         }
     }
     
-    
-    
+// Méthode pour récupérer les réservations d'un client spécifique
+// public function getClientReserv($client_id) {
+//     try {
+//         $query = "SELECT reservation.*, client.nom AS nom_client, billet.trajet*
+//                   FROM reservation 
+//                   LEFT JOIN client ON reservation.id_client = client.id
+//                   LEFT JOIN billet ON reservation.id_billet = billet.id
+//                   WHERE reservation.id_client = :client_id";
+        
+//         $statement = $this->connexion->prepare($query);
+//         $statement->bindParam(':client_id', $client_id, PDO::PARAM_INT);
+//         $statement->execute();
+        
+//         $client_reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+//         return $client_reservations;
+//     } catch (PDOException $e) {
+//         // Gestion des exceptions PDO
+//         echo "Erreur PDO : " . $e->getMessage();
+//         return null;
+//     }
+// }
+
+ 
     
 }
 
