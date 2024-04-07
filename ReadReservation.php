@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Réservations</title>
-    <link rel="stylesheet" href="readReservation.css">
+    <link rel="stylesheet" href="ReadReservation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Inclure la feuille de style Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Inclure le script Bootstrap -->
@@ -41,13 +42,17 @@
                 // Affichage des réservations
                 foreach ($reservations as $reservation) {
                     ?>
-                    <div class="col">
+                    <div class="col"> 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Réservation #<?php echo $reservation['id']; ?></h5>
-                                <p class="card-text">Billet : <?php echo $reservation['trajet']; ?> - Prix : <?php echo $reservation['prix']; ?></p>
-                                <p class="card-text">Client : <?php echo $reservation['nom'] . " " . $reservation['prenom']; ?></p>
-                                <p class="card-text">État de la réservation : <?php echo $reservation['etat']; ?></p>
+                                <h5 class="card-title" style="">Réservation #<?php echo $reservation['id']; ?></h5>
+                                <p class="card-text"> <span>Billet:</span> <?php echo $reservation['trajet']; ?> - Prix : <?php echo $reservation['prix']; ?></p>
+                                <p class="card-text"> <span>Client:</span> <?php echo $reservation['nom'] . " " . $reservation['prenom']; ?></p>
+                                <p class="card-text"> <span>État de la réservation:</span> <?php echo $reservation['etat']; ?></p>
+                            </div>
+                            <div>
+                                <a href="modifier_reservation.php?id=<?php echo $reservation['id']; ?>" class="btn "><i class="fas fa-edit fa-2x" style="color:  #3011BC; "></i></a>
+                                <!-- <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></a> -->
                             </div>
                         </div>
                     </div>

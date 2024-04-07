@@ -64,7 +64,8 @@
     object-fit: cover;
 }
 .card-body{
-    background-color: #3011BC;
+    background:  #fff;
+    
 }
 
 .card-title {
@@ -73,9 +74,8 @@
     font-family: iceberg;
     font-weight: bold;
     text-align: center;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #FFFF;
+    
+    border-bottom: 1px solid #3011BC;
 }
 .card-title img{
     background-color: #ffff;
@@ -84,25 +84,16 @@
 }
 
 .card-text {
-    color: #fff;
+    color: #FE7A15;
+    font-size: 18px;
+    font-weight: 300;
+    font-family: roboto;
 }
-.client,.trajet_tel,.datetime,.price,.update_delete{
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-.nom, .trajet,.date,.prix,.update{
-    float: left;
-}
-.coordonnees, .tel,.time,.validite,.delete{
-    float: right;
-    
-}
-.update,.delete{
-    background-color: #ffff;
-    border-radius: 5px;
+span{
+    color: #3011BC;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right:25px ;
 }
 
 
