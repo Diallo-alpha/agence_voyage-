@@ -35,6 +35,7 @@ if ($id !== null) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Inclure le script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <header>
@@ -78,7 +79,7 @@ if ($id !== null) {
         <td>
             <div class="bouton">
             <a href="updateBillet.php?id=<?php echo $billet['id']; ?>"><i class="fas fa-edit fa-2x" style="color:  #3011BC; "></i></a>
-            <a href="DeleteBillet.php?id=<?php echo $billet['id']; ?>"><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
+            <a href="DeleteBillet.php?id=<?php echo $billet['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');"><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
             </div>
         </td>
 
