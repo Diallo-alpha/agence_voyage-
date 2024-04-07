@@ -34,7 +34,7 @@
         </nav>
     </header>
         <?php
-        require_once 'config.php';
+        require_once './config.php';
 
         $billet = new Billet($connexion, null, null, null, null, null); 
         $reservations = $billet->getReserveBille();

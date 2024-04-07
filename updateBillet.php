@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier config.php et créer un objet de votre classe
-require_once "config.php";
+require_once "./config.php";
 
 // Vérifier si l'identifiant du billet à mettre à jour est passé en paramètre
 if(isset($_GET['id'])) {

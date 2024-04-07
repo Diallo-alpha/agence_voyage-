@@ -73,7 +73,7 @@ try {
                 </div>
             </div>
         </nav>
-    </header>
+    </header> 
     <main>
        
         <section class="destinations">

@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier config.php et créer un objet de votre classe
-require_once "config.php";
+require_once "./config.php";
 
 // Instancier votre objet Billet
 $billet = new Billet($connexion, 1, "trajet", 100000, "statut", 1);
