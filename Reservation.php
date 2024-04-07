@@ -145,6 +145,30 @@ public function readReservations() {
             echo "Erreur : " . $e->getMessage();
         }
     }
+    //function pour récupérer les réservations d'un client spécifique
+    public function getClientReservations($client_id) {
+        try {
+            $requete = $this->connexion->prepare("SELECT reservation.*, billet.*
+                      FROM reservation 
+                      LEFT JOIN billet ON reservation.id_billet = billet.id
+                      WHERE reservation.id_client = :client_id");
+            
+            $requete->bindParam(':client_id', $client_id, PDO::PARAM_INT);
+            
+            $requete->execute();
+            // Récupération des résultats
+            $client_reservations = $requete->fetchAll(PDO::FETCH_ASSOC);
+            // Retourner les réservations du client
+            return $client_reservations;
+        } catch (PDOException $e) {
+            // Gestion des exceptions PDO
+            echo "Erreur PDO : " . $e->getMessage();
+            return null;
+        }
+    }
+    
+    
+
     //annuler une reservation
     public function annulerReservation($reservation_id) {
         try {
@@ -167,6 +191,30 @@ public function readReservations() {
             throw new Exception("Erreur : " . $e->getMessage());
         }
     }
+    public function afficherToutesReservations() {
+        try {
+            // Requête SQL pour récupérer toutes les réservations avec les informations sur le client, le billet et l'état de la réservation
+            $query = "SELECT reservation.*, client.*, billet.*
+                      FROM reservation 
+                      LEFT JOIN client ON reservation.id_client = client.id 
+                      LEFT JOIN billet ON reservation.id_billet = billet.id";
+            
+            // Préparation de la requête
+            $statement = $this->connexion->query($query);
+            
+            // Récupération des résultats sous forme de tableau associatif
+            $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Retourner les réservations
+            return $reservations;
+        } catch (PDOException $e) {
+            // Gestion des exceptions PDO
+            echo "Erreur PDO : " . $e->getMessage();
+            return null;
+        }
+    }
+    
+    
     
     
 }
