@@ -91,35 +91,37 @@ class Reservation
     //methode qui permet d'afficher les reservation 
 
 
-    //methode pour mettre à ajour etat d'un réservation 
-    public function updateEtatReservation( $nouvel_etat) {
-        try {
-            // Préparation de la requête SQL
-            $query = "UPDATE reservation SET etat = :nouvel_etat WHERE id = :id";
-            
-            // Préparation de la requête
-            $statement = $this->connexion->prepare($query);
-            
-            // Liaison des paramètres
-            $statement->bindParam(':nouvel_etat', $nouvel_etat, PDO::PARAM_STR);
-            
-            // Exécution de la requête
-            $statement->execute();
-            
-            // Vérification si la mise à jour a réussi
-            if ($statement->rowCount() > 0) {
-                echo "L'état de la réservation a été mis à jour avec succès.";
-            } else {
-                echo "Impossible de mettre à jour l'état de la réservation.";
-            }
-        } catch (PDOException $e) {
-            // Gestion des exceptions PDO
-            echo "Erreur PDO : " . $e->getMessage();
-        } catch (Exception $e) {
-            // Gestion des autres exceptions
-            echo "Erreur : " . $e->getMessage();
+    // Méthode pour mettre à jour l'état d'une réservation
+public function updateEtatReservation($reservation_id, $nouvel_etat) {
+    try {
+        // Préparation de la requête SQL
+        $query = "UPDATE reservation SET etat = :nouvel_etat WHERE id = :id";
+
+        // Préparation de la requête
+        $statement = $this->connexion->prepare($query);
+
+        // Liaison des paramètres
+        $statement->bindParam(':nouvel_etat', $nouvel_etat, PDO::PARAM_STR);
+        $statement->bindParam(':id', $reservation_id, PDO::PARAM_INT);
+
+        // Exécution de la requête
+        $statement->execute();
+
+        // Vérification si la mise à jour a réussi
+        if ($statement->rowCount() > 0) {
+            echo "L'état de la réservation a été mis à jour avec succès.";
+        } else {
+            echo "Impossible de mettre à jour l'état de la réservation.";
         }
+    } catch (PDOException $e) {
+        // Gestion des exceptions PDO
+        echo "Erreur PDO : " . $e->getMessage();
+    } catch (Exception $e) {
+        // Gestion des autres exceptions
+        echo "Erreur : " . $e->getMessage();
     }
+}
+
     //function pour récupérer les réservations d'un client spécifique
     public function getClientReservations($client_id) {
         try {
@@ -169,11 +171,11 @@ class Reservation
     public function readReservations() {
         try {
             // Requête SQL pour récupérer toutes les réservations avec les informations sur le client, le billet et l'état de la réservation
-            $query = "SELECT reservation.*, client.*, billet.*
-                      FROM reservation 
-                      LEFT JOIN client ON reservation.id_client = client.id 
-                      LEFT JOIN billet ON reservation.id_billet = billet.id";
-            
+            $query = "SELECT reservation.*, client.nom, client.prenom, billet.trajet, billet.prix
+                        FROM reservation 
+                        LEFT JOIN client ON reservation.id_client = client.id 
+                        LEFT JOIN billet ON reservation.id_billet = billet.id";
+        
             // Préparation de la requête
             $statement = $this->connexion->query($query);
             
