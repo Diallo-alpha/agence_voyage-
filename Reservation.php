@@ -213,7 +213,7 @@ public function readReservations() {
             return null;
         }
     }
-    
+  
 // Méthode pour récupérer les réservations d'un client spécifique
 // public function getClientReserv($client_id) {
 //     try {
