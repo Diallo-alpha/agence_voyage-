@@ -145,6 +145,29 @@ public function readReservations() {
             echo "Erreur : " . $e->getMessage();
         }
     }
+    //annuler une reservation
+    public function annulerReservation($reservation_id) {
+        try {
+            $statement = $this->connexion->prepare("UPDATE reservation SET etat = 'annulée' WHERE id = :reservation_id");
+    
+            $statement->bindParam(':reservation_id', $reservation_id, PDO::PARAM_INT);
+            
+            $success = $statement->execute();
+            
+            if ($success) {
+                return true; // Opération réussie
+            } else {
+                return false; // Opération échouée
+            }
+        } catch (PDOException $e) {
+            // Log or return error message
+            throw new Exception("Erreur PDO : " . $e->getMessage());
+        } catch (Exception $e) {
+            // Log or return error message
+            throw new Exception("Erreur : " . $e->getMessage());
+        }
+    }
+    
     
 }
 
