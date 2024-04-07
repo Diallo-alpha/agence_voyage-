@@ -87,7 +87,6 @@ class Reservation
             echo "Erreur PDO : " . $e->getMessage();
         }
     }
-    
 
 
 
