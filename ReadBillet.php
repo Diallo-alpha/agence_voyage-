@@ -45,13 +45,13 @@ if ($id !== null) {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php">AJOUTER UN BILLET</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Ajouter un Billet</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ReadBillet.php">LISTE DES BILLETS</a>
+                            <a class="nav-link" href="ReadBillet.php">Liste des Billets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"aria-current="page"href="reservation_billet.php"><h1>Réservations par Billet</h1></a>
+                            <a class="nav-link"aria-current="page"href="reservation_billet.php">Liste des Réservations</a>
                         </li>
                     </ul>
                 </div>
