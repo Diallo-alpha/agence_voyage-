@@ -23,7 +23,7 @@
                     </li>
                     
                     <li class="nav-item">
-                    <a class="nav-link" href="ReadReservation.php">LISTE DES BILLETS</a>
+                    <a class="nav-link" href="ReadReservation.php">LISTE DES RESERVATIONS</a>
                     </li>
                 </ul>
                 </div>
