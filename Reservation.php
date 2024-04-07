@@ -189,6 +189,43 @@ public function updateEtatReservation($reservation_id, $nouvel_etat) {
             return null;
         }
     }
+
+ //Méthode pour récupérer les réservations d'un client spécifique
+ public function getClientReserv($client_id) {
+     try {
+         $query = "SELECT reservation.*, client.nom AS nom_client, billet.trajet*
+                   FROM reservation 
+                   LEFT JOIN client ON reservation.id_client = client.id
+                   LEFT JOIN billet ON reservation.id_billet = billet.id
+                   WHERE reservation.id_client = :client_id";
+         $statement = $this->connexion->prepare($query);
+         $statement->bindParam(':client_id', $client_id, PDO::PARAM_INT);
+         $statement->execute();
+        
+         $client_reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+         return $client_reservations;
+     } catch (PDOException $e) {
+         // Gestion des exceptions PDO
+         echo "Erreur PDO : " . $e->getMessage();
+         return null;
+     }
+ }
+
+ public function deleteReservation($id) {
+    try {
+        // Préparer la requête SQL pour supprimer la réservation avec l'ID spécifié
+        $stmt = $this->connexion->prepare("DELETE FROM reservation WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        
+        // Exécuter la requête
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // En cas d'erreur PDO, afficher le message d'erreur
+        echo "Erreur PDO : " . $e->getMessage();
+        return false; // Indiquer que la suppression a échoué
+    }
+}
     // require_once "Reservation.php"; // Assurez-vous d'avoir le fichier contenant la classe Reservation
 
     //         // Requête SQL pour récupérer les détails des réservations avec les informations du billet et du client
@@ -207,7 +244,6 @@ public function updateEtatReservation($reservation_id, $nouvel_etat) {
     //             // Récupération des résultats
     //             $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
                 
-    
     
     
     
