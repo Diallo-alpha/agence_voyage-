@@ -69,7 +69,7 @@ button{
                     <a class="nav-link" aria-current="page" href="User.php">ACCUEIL</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="ReadReservation.php">LISTE DES BILLETS</a>
+                    <a class="nav-link" href="ReadReservation.php">LISTE DES RESERVATIONS</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="read_billet.php">CONNEXION</a>
