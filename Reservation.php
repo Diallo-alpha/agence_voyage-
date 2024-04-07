@@ -63,17 +63,18 @@ class Reservation
 
 
     //methode pour creer une nouvelle reservation
-    public function addReservation($client_id, $billet_id, $date_reservation, $etat) {
+    public function addReservation($billet_id, $client_id,  $date_reservation, $etat) {
         try {
             // Préparation de la requête SQL
             $query = "INSERT INTO reservation (id_billet, id_client, date, etat) VALUES (:id_billet, :id_client, :date, :etat)";
             
-            // Préparation de la requête
+            // Préparation de la requête 
+	 
             $statement = $this->connexion->prepare($query);
             
             // Liaison des paramètres
-            $statement->bindParam(':id_billet', $client_id, PDO::PARAM_INT);
-            $statement->bindParam(':id_client', $billet_id, PDO::PARAM_INT);
+            $statement->bindParam(':id_billet', $billet_id, PDO::PARAM_INT);
+            $statement->bindParam(':id_client', $client_id, PDO::PARAM_INT);
             $statement->bindParam(':date', $date_reservation, PDO::PARAM_STR);
             $statement->bindParam(':etat', $etat, PDO::PARAM_STR);
             
@@ -88,33 +89,7 @@ class Reservation
     }
     
 
-    //methode qui permet d'afficher les reservation 
 
-    // Modification de la méthode readReservations dans la classe Reservation
-public function readReservations() {
-    try {
-        // Requête SQL pour récupérer les réservations avec les informations sur le client, le billet et l'état de la réservation
-        $query = "SELECT reservation.*, client.*, billet.*
-                  FROM reservation 
-                  LEFT JOIN client ON reservation.id_client = client.id 
-                  LEFT JOIN billet ON reservation.id_billet = billet.id";
-        
-        // Préparation de la requête
-        $statement = $this->connexion->query($query);
-        
-        // Récupération des résultats sous forme de tableau associatif
-        $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Retourner les réservations
-        return $reservations;
-    } catch (PDOException $e) {
-        // Gestion des exceptions PDO
-        echo "Erreur PDO : " . $e->getMessage();
-        return null;
-    }
-}
-
-    
 
     //methode pour mettre à ajour etat d'un réservation 
     public function updateEtatReservation( $nouvel_etat) {
@@ -191,7 +166,7 @@ public function readReservations() {
             throw new Exception("Erreur : " . $e->getMessage());
         }
     }
-    public function afficherToutesReservations() {
+    public function readReservations() {
         try {
             // Requête SQL pour récupérer toutes les réservations avec les informations sur le client, le billet et l'état de la réservation
             $query = "SELECT reservation.*, client.*, billet.*
@@ -213,6 +188,24 @@ public function readReservations() {
             return null;
         }
     }
+    // require_once "Reservation.php"; // Assurez-vous d'avoir le fichier contenant la classe Reservation
+
+    //         // Requête SQL pour récupérer les détails des réservations avec les informations du billet et du client
+    //         $query = "SELECT reservation.*, billet.trajet, billet.prix, client.nom, client.prenom
+    //                   FROM reservation
+    //                   INNER JOIN billet ON reservation.id_billet = billet.id
+    //                   INNER JOIN client ON reservation.id_client = client.id";
+
+    //         try {
+    //             // Préparation de la requête
+    //             $statement = $connexion->prepare($query);
+                
+    //             // Exécution de la requête
+    //             $statement->execute();
+                
+    //             // Récupération des résultats
+    //             $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+                
     
     
     

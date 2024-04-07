@@ -1,97 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acheter un billet</title>
-    <link rel="stylesheet" href="reserver.css">
-    <!-- Inclure la feuille de style Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Inclure le script Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
+<section class="reservation">
+    <h1>Réserver un billet</h1>
+    <?php
+    require_once "config.php";
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php"><img src="./images/Logo.png" alt="logo"></a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="User.php">ACCUEIL</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="Reserver.php">RÉSERVEZ UN BILLET</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="ReadReservation.php">LISTE DES BILLETS</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
-     </header>
-    <section class="formulaire">
-        <h1>RESERVER UN BILLET</h1>
-        <?php
-        // Vérifier si l'ID du billet est défini dans $_POST
-        if (isset($_POST['id'])) {
-            // Récupérer l'ID du billet à partir de $_POST
-            $id_billet = $_POST['id'];
-            // Connexion à la base de données et récupération des informations du billet (à remplacer par votre propre logique)
-            require_once "config.php";
-            $query = "SELECT * FROM billet WHERE id = :id";
-            $statement = $connexion->prepare($query);
-            $statement->bindParam(':id', $id_billet);
-            $statement->execute();
-            $billet = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reserver'])) {
+        // Traitement du formulaire de réservation ici
+    }
 
-            // Vérifier si les informations du billet ont été récupérées avec succès
-            if ($billet) {
-                echo "<h2>Détails du billet</h2>";
-                echo "<p>Le Trajet : " . $billet['trajet'] . "</p>";
-                echo "<p>Prix : " . $billet['prix'] . "</p>";
-                // Afficher d'autres informations du billet si nécessaire
-            } else {
-                echo "<p>Le billet sélectionné n'existe pas.</p>";
-            }
-        } else {
-            echo "<p>Aucun billet sélectionné.</p>";
-        }
+    // Vérifier si un billet a été sélectionné
+    if (isset($_POST['id'])) {
+        // Récupération des détails du billet sélectionné depuis la base de données
+        $billet_id = $_POST['id'];
+        $query = "SELECT * FROM billet WHERE id = ?";
+        $statement = $connexion->prepare($query);
+        $statement->execute([$billet_id]);
+        $billet = $statement->fetch(PDO::FETCH_ASSOC);
 
-        // Affichage du formulaire de réservation
-        echo "<h2>Informations personnelles</h2>";
+        // Afficher le formulaire de réservation avec les détails du billet sélectionné
         echo "<form method='post' action='AddReservation.php'>";
-        echo "<input type='hidden' name='id' value='" . $id_billet . "'>"; // Correction ici
-        // echo "<label for='nom'>Nom :</label><br>";
-        // echo "<input type='text' id='nom' name='nom'><br>";
-        // echo "<label for='prenom'>Prenom :</label><br>";
-        // echo "<input type='text' id='prenom' name='prenom'><br>";
-        // echo "<label for='email'>Email :</label><br>";
-        // echo "<input type='text' id='email' name='email'><br>";
-        // echo "<label for='telephone'>Téléphone:</label><br>";
-        // echo "<input type='text' id='telephone' name='telephone'><br>";
-        echo "<label for='date_reservation'>Date de réservation :</label><br>";
-        echo "<input type='datetime-local' id='date_reservation' name='date_reservation'><br>"; // Champ pour la date de réservation
-        echo "<label for='etat'>État :</label><br>";
-        echo "<select id='etat' name='etat'>";
-        echo "<option value='confirmé'>Confirmé</option>";
-        echo "<option value='en attente'>En attente</option>";
-        echo "<option value='annulé'>Annulé</option>";
-        echo "</select><br>";
-
-        // Ajouter d'autres champs pour les informations personnelles (prénom, email, téléphone, etc.)
-        echo "<input type='submit' value='Réserver'>";
+        echo "<input type='hidden' name='id' value='" . $billet['id'] . "'>";
+        echo "<label for='trajet'>Trajet :</label>";
+        echo "<input type='text' id='trajet' name='trajet' value='" . $billet['trajet'] . "' readonly>";
+        echo "<label for='prix'>Prix :</label>";
+        echo "<input type='text' id='prix' name='prix' value='" . $billet['prix'] . "' readonly>";
+        echo "<label for='date'>Date de réservation :</label>";
+        echo "<input type='date' id='date' name='date' placeholder='Date de réservation' required>";
+        echo "<label for='etat'>État de la réservation :</label>";
+        echo "<select id='etat' name='etat' required>
+                <option value='confirmé'>Confirmée</option>
+                <option value='en attente'>En attente</option>
+                <option value='annulé'>Annulée</option>
+              </select>";
+        echo "<input class='bouton-reserver' type='submit' name='reserver' value='Valider'>";
         echo "</form>";
-        ?>
-        
-        <div class="col-md-6">
-            <img src="./images/240_F_200801160_RwsMwJayAWtlWjnD41DRREgrgihQMdze.jpg" alt="Image" class="img-fluid">
-        </div>
-        </div>
-    </section>
-</div>
-
-</body>
-</html>
+    } else {
+        echo "<p>Aucun billet sélectionné.</p>";
+    }
+    ?>
+</section>
