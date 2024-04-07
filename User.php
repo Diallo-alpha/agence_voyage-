@@ -10,38 +10,53 @@
     <!-- Inclure le script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <style>
-        .carte {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 300px;
-            background-color: #f9f9f9;
-        }
-        .carte h2 {
-            margin-top: 0;
-        }
-        .carte p {
-            margin-bottom: 5px;
-        }
-        .bouton-reserver {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .bouton-reserver:hover {
-            background-color: #45a049;
-        }
-    </style>
+    
 </head>
 <style>
     body{
         background-color: #F5F5F5;
     }
+    /* CSS pour les cartes de billets */
+    .billet_dispo .titre {
+    padding: 20px;
+    margin-top: 5%;
+}
+
+.billet_dispo .titre h1{
+    color: #FE7A15;
+    font-size: 60px;
+    font-family: iceberg;
+    font-weight: bold; 
+    text-align: center;
+    margin-bottom: 5%;
+}
+.card{
+    margin-bottom: 30px;
+}
+
+.card-text{
+    font-size: 18px;
+    font-family: Roboto;
+    
+}
+.card-text span{
+    color: #FE7A15;
+    font-weight: bold;
+}
+button{
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 300px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #3011BC;
+}
+
+
 </style>
 <body>
     <header>
@@ -70,15 +85,13 @@
             <div class="banner-text">
                 <h2>Partez à L'aventure avec Nous</h2>
                 <p>Recherchez et réservez vos billets de voyage en toute simplicité.</p>
-                <form action="#" method="get">
-                    <input type="text" name="destination" placeholder="Entrez votre destination">
-                    <input type="date" name="date" placeholder="Date de départ">
-                    <button type="submit">Rechercher</button>
-                </form>
+               
             </div>
         </section>
-        <section class="billet_dispo">
-            <h1>Liste des billets disponibles</h1>
+        <div class="container">
+    <section class="billet_dispo">
+        <div class="titre"><h1>Liste des billets disponibles</h1></div>
+        <div class="row">
             <?php
             require_once "config.php";
             $client_connecte = false; // Par défaut, le client n'est pas connecté
@@ -90,80 +103,52 @@
 
             // Affichage des billets sous forme de cartes
             foreach ($billets as $billet) {
-                echo "<div class='carte'>";
-                echo "<h2>" . $billet['trajet'] . "</h2>";
-                echo "<p>Prix : " . $billet['prix'] . "</p>";
-                echo "<p>Disponibilité : " . $billet['statut'] . "</p>";
+                echo "<div class='col-md-6'>"; // Utilisation des colonnes Bootstrap pour aligner deux cartes par ligne
+                echo "<div class='card'>";
+                echo "<img src='./images/240_F_659359825_XInQSIa2BUeSM2LuKntmw883qvAsyltr.jpg' class='card-img-top' alt='Image du billet'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . $billet['trajet'] . "</h5>";
+                echo "<p class='card-text'><span>Prix</span> : " . $billet['prix'] . "</p>";
+                echo "<p class='card-text'><span>Disponibilité</span> : " . $billet['statut'] . "</p>";
                 echo "<form method='post' action='reserver.php'>";
                 echo "<input type='hidden' name='id' value='" . $billet['id'] . "'>";
-                echo "<input class='bouton-reserver' type='submit' name='reserver' value='Réserver'>";
+                echo "<button  type='submit' name='reserver'>Réserver</button>";
                 echo "</form>";
+                echo "</div>";
+                echo "</div>";
                 echo "</div>";
             }
             ?>
-        </section>
-        <section class="destinations">
-            <div class="container">
-                <h2>Destinations populaires</h2>
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="./images/palais-communication-au-crepuscule-ete-madrid_1398-2169.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Madrid</h5>
-                                <a href="Reserver.php" class=" bouton ">RESERVEZ</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                        <img src="./images/1000_F_170667573_7EnaDhe9xo1elwC9fAVjy02BPiJrZ9PW.jpg" class="card-img-top" alt="...">
+        </div>
+    </section>
+</div>
+<section class="destinations">
+    <h2>Les destinations les plus populaires</h2>
+    <?php
+    require_once "config.php";
+
+    $query = "SELECT * FROM destinations_populaires";
+    $statement = $connexion->query($query);
+    $destinations = $statement->fetchAll(PDO::FETCH_ASSOC);
+    ?>
+
+    <div class="container">
+        <div class="row">
+            <?php foreach ($destinations as $destination) : ?>
+                <div class="col-md-6"> <!-- Modifier ici la classe pour aligner deux cartes par ligne -->
+                    <div class="card">
+                        <img src="<?php echo $destination['image']; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">DUBAI</h5>
-                            <a href="Reserver.php" class=" bouton ">RESERVEZ</a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                        <img src="./images/1000_F_251121174_5xQyUCqSrkswyLHbM9Ne8DQ8Qb0o1HGw.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">TOKYO</h5>
-                            <a href="Reserver.php" class=" bouton ">RESERVEZ</a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                        <img src="./images/1000_F_264549883_ayKb5wQ3jAE0c4EfXan3tJhCHYCyd8Q4.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">PARIS</h5>
-                            <a href="Reserver.php" class=" bouton ">RESERVEZ</a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                        <img src="./images/beau-pont-manhattan-new-york-etats-unis_181624-48458.avif" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">NEW YORK</h5>
-                            <a href="Reserver.php" class=" bouton ">RESERVEZ</a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                        <img src="./images/1000_F_87517185_TnJGDTGa3PKJKvakVdw6ExM5fggHO4mi.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">MECQUE</h5>
-                            <a href="Reserver.php" class=" bouton ">RESERVEZ</a>
-                        </div>
+                            <h5 class="card-title"><?php echo $destination['nom']; ?></h5>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
-   
-        </section>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+    
 
     </main>
     <footer>

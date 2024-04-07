@@ -68,22 +68,8 @@
     font-family: roboto;
     font-weight: bold;
 }
-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
-input[type="text"],
-input[type="date"],
-button[type="submit"] {
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 22px;
-    width: 100%;
-    max-width: 300px;
-}
+
 
 button {
     background-color: #3011BC;
@@ -95,6 +81,7 @@ button:hover {
     background-color: #FE7A15;
     color: #fff;
 }
+
 /* Cartes de destination */
 .destinations {
     padding: 20px;
@@ -145,6 +132,7 @@ button:hover {
 
 }
 
+
 /* Bouton de la carte */
 /* Style du bouton */
 .bouton {
@@ -155,6 +143,7 @@ button:hover {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
+    
 }
 
 .bouton:hover {
