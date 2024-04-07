@@ -50,6 +50,9 @@ if ($id !== null) {
                         <li class="nav-item">
                             <a class="nav-link" href="ReadBillet.php">LISTE DES BILLETS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link"aria-current="page"href="reservation_billet.php"><h1>Réservations par Billet</h1></a>
+                        </li>
                     </ul>
                 </div>
             </div>

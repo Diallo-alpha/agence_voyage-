@@ -23,7 +23,7 @@
                     </li>
                     
                     <li class="nav-item">
-                    <a class="nav-link" href="read_billet.php">LISTE DES BILLETS</a>
+                    <a class="nav-link" href="ReadReservation.php">LISTE DES BILLETS</a>
                     </li>
                 </ul>
                 </div>
@@ -51,7 +51,7 @@
                                 <p class="card-text"> <span>État de la réservation:</span> <?php echo $reservation['etat']; ?></p>
                             </div>
                             <div>
-                                <a href="modifier_reservation.php?id=<?php echo $reservation['id']; ?>" class="btn "><i class="fas fa-edit fa-2x" style="color:  #3011BC; "></i></a>
+                            <a href="updateReservation.php?id=<?php echo $reservation['id']; ?>" class="btn"><i class="fas fa-edit fa-2x" style="color: #3011BC;"></i></a>
                                 <!-- <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></a> -->
                             </div>
                         </div>
