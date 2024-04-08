@@ -56,7 +56,7 @@
                 echo "<p><span>Prénom:</span> ".$reservation['prenom']."</p>";
                 echo "<p><span>Email:</span> ".$reservation['email']."</p>";
                 echo "<p><span>Téléphone</span> ".$reservation['telephone']."</p>";
-                echo "<p><span>Date</span>: ".$reservation['date_voyage']."</p>";
+                echo "<p><span>Date Voyage</span>: ".$reservation['date_voyage']."</p>";
                 echo "</div>";
                 echo "</div>";
             }
