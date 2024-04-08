@@ -1,7 +1,6 @@
 <?php
 require_once "config.php";
 
-
 $erreurs = [];
 
 // Vérifier si le formulaire a été soumis
