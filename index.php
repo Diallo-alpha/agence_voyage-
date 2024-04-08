@@ -16,22 +16,36 @@ try {
         $statut = $_POST['statut'];
         $email = $_POST['email'];
         
-        // Préparation de la requête pour récupérer l'ID de l'admin à partir de l'email
-        $query = "SELECT id FROM admin WHERE email = :email";
-        $stmt = $connexion->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-        $id_admin = $stmt->fetchColumn();
-        
-        // Appel de la méthode addBillet de votre objet Billet pour ajouter le billet
-        $billet= new Billet($connexion,1, "trajet", 100000, "statut", 1);
-        $billet->addBillet($trajet, $prix, $statut, $id_admin);
+        // Expression régulière pour valider le format du trajet (par exemple, "Dakar - Dubai")
+        $regex_trajet = "/^[a-zA-Z\s]+(\s*-\s*[a-zA-Z\s]+)+$/";
+
+        // Expression régulière pour valider le prix (par exemple, un nombre décimal positif)
+        $regex_prix = "/^\d+(\.\d+)?$/";
+
+        // Vérifier si le trajet et le prix correspondent aux expressions régulières
+        if (preg_match($regex_trajet, $trajet) && preg_match($regex_prix, $prix)) {
+            // Préparation de la requête pour récupérer l'ID de l'admin à partir de l'email
+            $query = "SELECT id FROM admin WHERE email = :email";
+            $stmt = $connexion->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $id_admin = $stmt->fetchColumn();
+            
+            // Appel de la méthode addBillet de votre objet Billet pour ajouter le billet
+            $billet= new Billet($connexion,1, "trajet", 100000, "statut", 1);
+            $billet->addBillet($trajet, $prix, $statut, $id_admin);
+        } else {
+            // Les données ne correspondent pas aux expressions régulières, afficher un message d'erreur
+            echo "Erreur : Veuillez saisir un trajet valide (par exemple, 'Dakar - Dubai') et un prix valide.";
+        }
     }
 } catch (PDOException $e) {
     // Gestion des erreurs
     echo "Erreur lors de l'ajout du billet : " . $e->getMessage();
 }
 ?>
+
+
 
 
 
