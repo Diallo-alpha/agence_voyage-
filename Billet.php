@@ -182,7 +182,7 @@ public function getListeBillests()
   //rservation d'un billet 
     public function getReserveBille()
         {
-           $sql = $this->connexion->prepare("SELECT reservation.id, billet.trajet, billet.prix, client.nom, client.prenom, client.email, client.telephone, reservation.date
+           $sql = $this->connexion->prepare("SELECT reservation.id, billet.trajet, billet.prix, client.nom, client.prenom, client.email, client.telephone,billet.date_voyage
                                               FROM reservation
                                               JOIN billet ON reservation.id_billet = billet.id
                                               JOIN client ON reservation.id_client = client.id"
