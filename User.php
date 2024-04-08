@@ -59,6 +59,14 @@ button{
     border-right: none;
     border-bottom: 1px solid #3011BC;
 }
+.see_more{
+    margin: 10px;
+}
+.see_more a{
+    font-size: 24px;
+    font-family: Roboto;
+    text-align: center;
+}
 
 
 </style>
@@ -119,38 +127,44 @@ button{
             </div>
         </section>
         <div class="container">
-    <section class="billet_dispo">
-        <div class="titre"><h1>Liste des billets disponibles</h1></div>
-        <div class="row">
-            <?php
-            require_once "config.php";
-            $client_connecte = false; // Par défaut, le client n'est pas connecté
+        <section class="billet_dispo">
+    <div class="titre"><h1>Liste des billets disponibles</h1></div>
+    <div class="row">
+        <?php
+        require_once "config.php";
+        $client_connecte = false; // Par défaut, le client n'est pas connecté
 
-            // Récupération des billets disponibles depuis la base de données
-            $query = "SELECT * FROM billet WHERE statut = 'disponible'";
-            $statement = $connexion->query($query);
-            $billets = $statement->fetchAll(PDO::FETCH_ASSOC);
+        // Récupération des billets disponibles depuis la base de données
+        $query = "SELECT * FROM billet WHERE statut = 'disponible' LIMIT 4"; // Limite à 4 billets
+        $statement = $connexion->query($query);
+        $billets = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            // Affichage des billets sous forme de cartes
-            foreach ($billets as $billet) {
-                echo "<div class='col-md-6'>"; // Utilisation des colonnes Bootstrap pour aligner deux cartes par ligne
-                echo "<div class='card'>";
-                echo "<img src='./images/240_F_659359825_XInQSIa2BUeSM2LuKntmw883qvAsyltr.jpg' class='card-img-top' alt='Image du billet'>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>" . $billet['trajet'] . "</h5>";
-                echo "<p class='card-text'><span>Prix</span> : " . $billet['prix'] . "</p>";
-                echo "<p class='card-text'><span>Disponibilité</span> : " . $billet['statut'] . "</p>";
-                echo "<form method='post' action='reserver.php'>";
-                echo "<input type='hidden' name='id' value='" . $billet['id'] . "'>";
-                echo "<button  type='submit' name='reserver'>Réserver</button>";
-                echo "</form>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            ?>
-        </div>
-    </section>
+        // Affichage des billets sous forme de cartes
+        foreach ($billets as $billet) {
+            echo "<div class='col-md-6'>"; // Utilisation des colonnes Bootstrap pour aligner deux cartes par ligne
+            echo "<div class='card'>";
+            echo "<img src='./images/240_F_659359825_XInQSIa2BUeSM2LuKntmw883qvAsyltr.jpg' class='card-img-top' alt='Image du billet'>";
+            echo "<div class='card-body'>";
+            echo "<h5 class='card-title'>" . $billet['trajet'] . "</h5>";
+            echo "<p class='card-text'><span>Prix</span> : " . $billet['prix'] . "</p>";
+            echo "<p class='card-text'><span>Date du Voyage</span> : " . $billet['date_voyage'] . "</p>";
+            echo "<p class='card-text'><span>Disponibilité</span> : " . $billet['statut'] . "</p>";
+            echo "<form method='post' action='reserver.php'>";
+            echo "<input type='hidden' name='id' value='" . $billet['id'] . "'>";
+            echo "<button  type='submit' name='reserver'>Réserver</button>";
+            echo "</form>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        }
+        ?>
+    </div>
+    <!-- Bouton "Voir plus" -->
+    <div class="see_more text-center">
+        <a href="tous_les_billets.php" class="bouton">Voir plus</a>
+    </div>
+</section>
+
 </div>
 <section class="destinations">
     <h2>Les destinations les plus populaires</h2>
