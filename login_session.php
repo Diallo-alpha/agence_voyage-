@@ -28,7 +28,10 @@ if ($resultat) {
     // Récupérer les informations de l'utilisateur
     $_SESSION['id'] = $resultat['id']; 
     $_SESSION['prenom'] = $resultat['prenom'];
-    $_SESSION['nom'] = $resultat['nom']; 
+    $_SESSION['nom'] = $resultat['nom'];
+    $_SESSION['email'] = $resultat['email'];
+    $_SESSION['logged'] = true;
+     
     
     
     header('Location: User.php'); // Redirigez l'utilisateur vers la page d'accueil après la connexion

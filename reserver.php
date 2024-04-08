@@ -33,8 +33,9 @@
         <div class="container">
             <h1>Faire une Réservation </h1>
             <?php
+            session_start(); // Démarrer la session
             require_once "config.php";
-
+             
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reserver'])) {
                 // Traitement du formulaire de réservation ici
             }
@@ -63,8 +64,18 @@
                 echo "</div>";
                 echo "<div class='form-group'>";
                 echo "<label for='date'>Date de réservation :</label>";
-                echo "<input type='date' id='date' name='date' placeholder='Date de réservation' required>";
+                echo "<input type='date' id='date' name='date' value='" . date('Y-m-d') . "' required>";
                 echo "</div>";
+                // Ajouter les champs pour le nom et le prénom du client
+                echo "<div class='form-group'>";
+                echo "<label for='nom'>Nom :</label>";
+                echo "<input type='text' id='nom' name='nom' value='" . (isset($_SESSION["nom"]) ? $_SESSION["nom"] : "") . "' readonly>";
+                echo "</div>";
+                echo "<div class='form-group'>";
+                echo "<label for='prenom'>Prénom :</label>";
+                echo "<input type='text' id='prenom' name='prenom' value='" . (isset($_SESSION["prenom"]) ? $_SESSION["prenom"] : "") . "' readonly>";
+                echo "</div>";
+
                 echo "<div class='form-group'>";
                 echo "<label for='etat'>État de la réservation :</label>";
                 echo "<select id='etat' name='etat' required>
@@ -73,6 +84,8 @@
                         <option value='annulé'>Annulée</option>
                     </select>";
                 echo "</div>";
+
+
                 echo "<input class='btn btn-primary' type='submit' name='reserver' value='Valider'>";
                 echo "</form>";
 
