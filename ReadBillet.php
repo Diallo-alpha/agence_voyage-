@@ -2,8 +2,8 @@
 // Inclure le fichier config.php et créer un objet de votre classe
 require_once "./config.php";
 
-// Instancier votre objet Billet
-$billet = new Billet($connexion, 1, "trajet", 100000, "statut", 1);
+// // Instancier votre objet Billet
+// $billet = new Billet($connexion, 'trajet', 100000, 'date_voyage', 'statut', 'admin_email', 1);
 
 // Appeler la méthode readBillet pour récupérer les billets
 $billets = $billet->readBillet();
@@ -67,6 +67,7 @@ if ($id !== null) {
                 <tr>
                     <th>Trajet</th>
                     <th>Prix</th>
+                    <th>Date du Voyage</th>
                     <th>Statut</th>
                      <th>Email de l'Agent</th> 
                     <th>Action</th>
@@ -77,6 +78,7 @@ if ($id !== null) {
     <tr>
         <td><?php echo $billet['trajet']; ?></td>
         <td><?php echo $billet['prix']; ?></td>
+        <td><?php echo $billet['date_voyage']; ?></td>
         <td><?php echo $billet['statut']; ?></td>
         <td><?php echo $billet['email']; ?></td>
         <td>

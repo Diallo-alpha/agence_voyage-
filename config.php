@@ -10,7 +10,8 @@
 
     try{
         $connexion = new PDO("mysql:host=$servername;dbname=$db",$username,$password);
-        $billet= new Billet($connexion, 1,"trajet", 1000000, "statut", 1);
+        $billet = new Billet($connexion, null,null,null,null,null,null);
+
         $resultat= $billet->readBillet();
         // Créer une instance de votre classe de gestion des réservations
         $Reservation = new Reservation($connexion, 1, 1, "2024-04-06", "confirmé");

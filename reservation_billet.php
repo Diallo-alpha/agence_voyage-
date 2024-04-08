@@ -36,7 +36,7 @@
         <?php
         require_once './config.php';
 
-        $billet = new Billet($connexion, null, null, null, null, null); 
+        // $billet = new Billet($connexion, null, null, null, null,null, null); 
         $reservations = $billet->getReserveBille();
 
                 // Afficher les réservations de billets

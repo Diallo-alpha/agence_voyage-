@@ -1,12 +1,10 @@
 <?php
 require_once "config.php";
 
-$erreurs = [];
-
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifier si toutes les données du formulaire sont présentes
-    if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['telephone'], $_POST['password'])) {
+    if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['password'])) {
         // Récupérer les données du formulaire
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
@@ -14,31 +12,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $telephone = $_POST['telephone'];
         $mot_de_passe = $_POST['password'];
 
-        // Validation des champs
-        if (empty($nom)) {
-            $erreurs['nom'] = "Le nom est obligatoire.";
-        }
-        if (empty($prenom)) {
-            $erreurs['prenom'] = "Le prénom est obligatoire.";
-        }
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $erreurs['email'] = "L'adresse email est invalide.";
-        }
-        if (empty($telephone)) {
-            $erreurs['telephone'] = "Le numéro de téléphone est obligatoire.";
-        }
-        if (empty($mot_de_passe)) {
-            $erreurs['password'] = "Le mot de passe est obligatoire.";
-        }
+        // Expression régulière pour valider le prénom et le nom (par exemple, seulement des lettres et espaces)
+        $regex_nom_prenom = "/^[a-zA-Z\s]+$/";
 
-        // Si aucune erreur, ajouter le client et rediriger
-        if (empty($erreurs)) {
-            // Assurez-vous que le chemin du fichier est correct
+        // Expression régulière pour valider l'email
+        $regex_email = "/^\S+@\S+\.\S+$/";
+
+        // Expression régulière pour valider le numéro de téléphone (format international)
+        $regex_telephone = "/^\+?\d{6,}$/";
+
+       
+        // Vérifier si les données saisies correspondent aux expressions régulières
+        if (preg_match($regex_nom_prenom, $nom) && preg_match($regex_nom_prenom, $prenom) && preg_match($regex_email, $email) && preg_match($regex_telephone, $telephone) ) {
+            // Les données sont valides, vous pouvez les traiter
             $client->addClient($nom, $prenom, $email, $telephone, $mot_de_passe);
+
             header("Location: login.php"); // Rediriger vers une page de succès
             exit();
+        } else {
+            header("Location: inscription.php"); // Rediriger vers une page de succès
+            exit();
+           
         }
+        
     }
 }
-include "inscription.php";
 ?>
