@@ -145,50 +145,50 @@ public function updateEtatReservation($reservation_id, $nouvel_etat) {
     
 
     //annuler une reservation
-    public function annulerReservation($reservation_id) {
-        try {
-            $statement = $this->connexion->prepare("UPDATE reservation SET etat = 'annulée' WHERE id = :reservation_id");
+    // public function annulerReservation($reservation_id) {
+    //     try {
+    //         $statement = $this->connexion->prepare("UPDATE reservation SET etat = 'annulée' WHERE id = :reservation_id");
     
-            $statement->bindParam(':reservation_id', $reservation_id, PDO::PARAM_INT);
+    //         $statement->bindParam(':reservation_id', $reservation_id, PDO::PARAM_INT);
             
-            $success = $statement->execute();
+    //         $success = $statement->execute();
             
-            if ($success) {
-                return true; // Opération réussie
-            } else {
-                return false; // Opération échouée
-            }
-        } catch (PDOException $e) {
-            // Log or return error message
-            throw new Exception("Erreur PDO : " . $e->getMessage());
-        } catch (Exception $e) {
-            // Log or return error message
-            throw new Exception("Erreur : " . $e->getMessage());
-        }
-    }
-    public function readReservations() {
-        try {
-            // Requête SQL pour récupérer toutes les réservations avec les informations sur le client, le billet et l'état de la réservation
-            $query = "SELECT reservation.*, client.nom, client.prenom, billet.trajet, billet.prix
-                        FROM reservation 
-                        LEFT JOIN client ON reservation.id_client = client.id 
-                        LEFT JOIN billet ON reservation.id_billet = billet.id";
+    //         if ($success) {
+    //             return true; // Opération réussie
+    //         } else {
+    //             return false; // Opération échouée
+    //         }
+    //     } catch (PDOException $e) {
+    //         // Log or return error message
+    //         throw new Exception("Erreur PDO : " . $e->getMessage());
+    //     } catch (Exception $e) {
+    //         // Log or return error message
+    //         throw new Exception("Erreur : " . $e->getMessage());
+    //     }
+    // }
+    // public function readReservations() {
+    //     try {
+    //         // Requête SQL pour récupérer toutes les réservations avec les informations sur le client, le billet et l'état de la réservation
+    //         $query = "SELECT reservation.*, client.nom, client.prenom, billet.trajet, billet.prix
+    //                     FROM reservation 
+    //                     LEFT JOIN client ON reservation.id_client = client.id 
+    //                     LEFT JOIN billet ON reservation.id_billet = billet.id";
             
             
-            // Préparation de la requête
-            $statement = $this->connexion->query($query);
+    //         // Préparation de la requête
+    //         $statement = $this->connexion->query($query);
             
-            // Récupération des résultats sous forme de tableau associatif
-            $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+    //         // Récupération des résultats sous forme de tableau associatif
+    //         $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
             
-            // Retourner les réservations
-            return $reservations;
-        } catch (PDOException $e) {
-            // Gestion des exceptions PDO
-            echo "Erreur PDO : " . $e->getMessage();
-            return null;
-        }
-    }
+    //         // Retourner les réservations
+    //         return $reservations;
+    //     } catch (PDOException $e) {
+    //         // Gestion des exceptions PDO
+    //         echo "Erreur PDO : " . $e->getMessage();
+    //         return null;
+    //     }
+    // }
 
  //Méthode pour récupérer les réservations d'un client spécifique
  public function getClientReserv($client_id) {

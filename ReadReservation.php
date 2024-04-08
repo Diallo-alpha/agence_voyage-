@@ -1,3 +1,6 @@
+<?php
+require_once('verification_session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +43,7 @@
         <?php
 // Inclure votre fichier de configuration et votre classe de gestion des réservations
 require_once "config.php";
-session_start();
+// session_start();
 
 // Vérifier si le client est connecté
 if(isset($_SESSION['id'])) {

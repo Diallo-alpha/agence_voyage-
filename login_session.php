@@ -30,7 +30,7 @@ if ($resultat) {
     $_SESSION['prenom'] = $resultat['prenom'];
     $_SESSION['nom'] = $resultat['nom'];
     $_SESSION['email'] = $resultat['email'];
-    $_SESSION['telephone'] = $resultat['telephone'];
+    $_SESSION['logged'] = true;
      
     
     

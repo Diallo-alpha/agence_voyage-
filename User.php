@@ -1,3 +1,6 @@
+<?php
+require_once('verification_session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +81,7 @@ button{
                 </ul>
                 <div class="presentation">
                     <?php
-                        session_start();
+                        // session_start();
 
                         // Vérifie si la session contient les informations du client (nom et prénom)
                         if(isset($_SESSION['prenom']) && isset($_SESSION['nom'])) {
