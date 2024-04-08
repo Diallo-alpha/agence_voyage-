@@ -13,6 +13,7 @@ try {
         // Récupérer les données du formulaire
         $trajet = $_POST['trajet'];
         $prix = $_POST['prix'];
+        $date_voyage = $_POST['date'];
         $statut = $_POST['statut'];
         $email = $_POST['email'];
         
@@ -33,7 +34,7 @@ try {
             
             // Appel de la méthode addBillet de votre objet Billet pour ajouter le billet
             $billet= new Billet($connexion,1, "trajet", 100000, "statut", 1);
-            $billet->addBillet($trajet, $prix, $statut, $id_admin);
+            $billet->addBillet($trajet, $prix,$date_voyage, $statut, $id_admin);
         } else {
             // Les données ne correspondent pas aux expressions régulières, afficher un message d'erreur
             echo "<script>alert('Erreur : Veuillez saisir un trajet valide (par exemple, \"Dakar - Dubai\") et un prix valide.');</script>";
@@ -101,6 +102,11 @@ try {
                     <label for="prix">Prix :</label>
                     <input type="text" id="prix" name="prix" required>
                 </div>
+                <div class='form-group'>
+                    <label for='date'>Date de Voyage :</label>
+                    <input type='datetime-local' id='date' name='date' value='<?php echo date('Y-m-d\TH:i'); ?>' required>
+                </div>
+
                 <div class="form-group">
                     <label for="statut">Statut :</label>
                     <select id="statut" name="statut" required>

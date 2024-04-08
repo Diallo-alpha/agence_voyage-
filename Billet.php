@@ -60,13 +60,14 @@ class Billet {
     }
 
     // Méthode pour ajouter des billets
-    public function addBillet($trajet, $prix, $statut, $id_admin)
+    public function addBillet($trajet, $prix,$date_voyage, $statut, $id_admin)
     {
         try {
-            $sql = "INSERT INTO billet (trajet, prix, statut, id_admin) VALUES (:trajet, :prix, :statut, :id_admin)";
+            $sql = "INSERT INTO billet (trajet, prix,date_voyage, statut, id_admin) VALUES (:trajet, :prix,:date_voyage, :statut, :id_admin)";
             $stmt = $this->connexion->prepare($sql);
             $stmt->bindParam(':trajet', $trajet);
             $stmt->bindParam(':prix', $prix);
+            $stmt->bindParam(':date_voyage', $date_voyage);
             $stmt->bindParam(':statut', $statut);
             $stmt->bindParam(':id_admin', $id_admin);
             $stmt->execute();
