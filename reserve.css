@@ -106,7 +106,7 @@ img {
 input[type="text"],
 input[type="date"],
 input[type="time"],
-input[type="submit"],select {
+input[type="submit"],select,input[type="datetime-local"] {
     margin-bottom: 10px;
     padding: 8px;
     border: 1px solid #ccc;
