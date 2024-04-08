@@ -226,25 +226,25 @@ public function updateEtatReservation($reservation_id, $nouvel_etat) {
         return false; // Indiquer que la suppression a échoué
     }
 }
-    // require_once "Reservation.php"; // Assurez-vous d'avoir le fichier contenant la classe Reservation
-
-    //         // Requête SQL pour récupérer les détails des réservations avec les informations du billet et du client
-    //         $query = "SELECT reservation.*, billet.trajet, billet.prix, client.nom, client.prenom
-    //                   FROM reservation
-    //                   INNER JOIN billet ON reservation.id_billet = billet.id
-    //                   INNER JOIN client ON reservation.id_client = client.id";
-
-    //         try {
-    //             // Préparation de la requête
-    //             $statement = $connexion->prepare($query);
-                
-    //             // Exécution de la requête
-    //             $statement->execute();
-                
-    //             // Récupération des résultats
-    //             $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
-                
+public function readReservationsByClient($client_id) {
+    // Préparez votre requête SQL en utilisant un paramètre de liaison pour éviter les injections SQL
+    $query = "SELECT r.*, b.trajet, b.prix FROM reservation r
+              INNER JOIN billet b ON r.id_billet = b.id
+              WHERE r.id_client = :id_client";
+    $stmt = $this->connexion->prepare($query);
+    $stmt->bindParam(":id_client", $client_id);
     
+    // Exécutez la requête
+    if($stmt->execute()) {
+        // Récupérez les résultats de la requête
+        $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $reservations;
+    } else {
+        // Gérez les erreurs de requête si nécessaire
+        return false;
+    }
+}
+
     
     
 }

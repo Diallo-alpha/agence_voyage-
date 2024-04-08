@@ -73,7 +73,7 @@ button{
                     <a class="nav-link" href="ReadReservation.php">LISTE DES RESERVATIONS</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="read_billet.php">DECONNEXION</a>
+                    <a class="nav-link" href="logout.php">DECONNEXION</a>
                     </li>
                 </ul>
                 <div class="presentation">

@@ -25,6 +25,9 @@
                     <li class="nav-item">
                     <a class="nav-link" href="ReadReservation.php">LISTE DES RESERVATIONS</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="logout.php">DECONNEXION</a>
+                    </li>
                 </ul>
                 </div>
             </div>
@@ -34,36 +37,47 @@
     <div class="container">
         <h2>Liste des Réservations</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            <?php
-            // Inclure votre fichier de configuration et votre classe de gestion des réservations
-            require_once "config.php";
-            $reservations = $Reservation->readReservations();
-            
-                // Affichage des réservations
-                foreach ($reservations as $reservation){
-                    ?>
-                    <div class="col"> 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title" style="">Réservation #<?php echo $reservation['id']; ?></h5>
-                                <p class="card-text"> <span>Billet:</span> <?php echo $reservation['trajet']; ?> - Prix : <?php echo $reservation['prix']; ?></p>
-                                <p class="card-text"> <span>Client:</span> <?php echo $reservation['nom'] . " " . $reservation['prenom']; ?></p>
-                                <p class="card-text"> <span>État de la réservation:</span> <?php echo $reservation['etat']; ?></p>
-                            </div>
-                            <div>
+        <?php
+// Inclure votre fichier de configuration et votre classe de gestion des réservations
+require_once "config.php";
+session_start();
 
-                                <!-- <a href="modifier_reservation.php?id=<?php echo $reservation['id']; ?>" class="btn "><i class="fas fa-edit fa-2x" style="color:  #3011BC; "></i></a>
-                                <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn "><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a> -->
+// Vérifier si le client est connecté
+if(isset($_SESSION['id'])) {
+    // Récupérer l'ID du client connecté
+    $id_client = $_SESSION['id'];
 
-                            <a href="updateReservation.php?id=<?php echo $reservation['id']; ?>" class="btn"><i class="fas fa-edit fa-2x" style="color: #3011BC;"></i></a>
-                             <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>"class="btn " onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');"><i class="fas fa-trash-alt fa-2x" style="color: red; ;"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-            
-            ?>
+    // Récupérer les réservations du client connecté
+    $reservations = $Reservation->readReservationsByClient($id_client);
+
+    // Affichage des réservations
+    foreach ($reservations as $reservation) {
+        ?>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="">Réservation #<?php echo $reservation['id']; ?></h5>
+                    <p class="card-text"> <span>Billet:</span> <?php echo $reservation['trajet']; ?> - Prix : <?php echo $reservation['prix']; ?></p>
+                    <!-- Utiliser les données de session pour afficher le nom et le prénom du client -->
+                    <p class="card-text"> <span>Client:</span> <?php echo isset($_SESSION['nom']) ? $_SESSION['nom'] : 'Nom inconnu'; ?> <?php echo isset($_SESSION['prenom']) ? $_SESSION['prenom'] : 'Prénom inconnu'; ?></p>
+                    <p class="card-text"> <span>État de la réservation:</span> <?php echo $reservation['etat']; ?></p>
+                </div>
+                <div>
+                    <!-- Ajouter ici les liens de modification et de suppression -->
+                    <a href="updateReservation.php?id=<?php echo $reservation['id']; ?>" class="btn"><i class="fas fa-edit fa-2x" style="color: #3011BC;"></i></a>
+                    <a href="supprimer_reservation.php?id=<?php echo $reservation['id']; ?>" class="btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');"><i class="fas fa-trash-alt fa-2x" style="color: red;"></i></a>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+} else {
+    // Si le client n'est pas connecté, afficher un message approprié ou rediriger vers une page de connexion
+    echo "Vous devez être connecté pour voir vos réservations.";
+}
+?>
+
+
         </div>
     </div>
 </body>
