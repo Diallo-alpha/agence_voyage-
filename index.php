@@ -33,7 +33,7 @@ try {
             $id_admin = $stmt->fetchColumn();
             
             // Appel de la méthode addBillet de votre objet Billet pour ajouter le billet
-            $billet= new Billet($connexion,1, "trajet", 100000, "statut", 1);
+            // $billet = new Billet($connexion, 'trajet', 100000, 'date_voyage', 'statut', 'admin_email', 1);
             $billet->addBillet($trajet, $prix,$date_voyage, $statut, $id_admin);
         } else {
             // Les données ne correspondent pas aux expressions régulières, afficher un message d'erreur
@@ -67,6 +67,14 @@ try {
     body{
         background-color: #F5F5F5;
     }
+    input[type='datetime-local'] {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 300px;
+}
 </style>
 <body>
     <header>
