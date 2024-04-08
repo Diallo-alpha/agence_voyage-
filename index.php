@@ -36,7 +36,7 @@ try {
             $billet->addBillet($trajet, $prix, $statut, $id_admin);
         } else {
             // Les données ne correspondent pas aux expressions régulières, afficher un message d'erreur
-            echo "Erreur : Veuillez saisir un trajet valide (par exemple, 'Dakar - Dubai') et un prix valide.";
+            echo "<script>alert('Erreur : Veuillez saisir un trajet valide (par exemple, \"Dakar - Dubai\") et un prix valide.');</script>";
         }
     }
 } catch (PDOException $e) {
